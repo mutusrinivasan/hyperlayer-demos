@@ -16,17 +16,15 @@ export default function SavingsTile({ jar }: SavingsTileProps) {
       icon={<Icon className="h-4 w-4" />}
       accent={jar.accent}
       title={jar.name}
-      rightLabel="Savings goal"
       subtitle={
-        <>
-          <span className="font-medium text-hyperlayer-grey">
-            {formatCurrencyCompact(jar.balance, 'en-GB')}
-          </span>
-          <span className="text-hyperlayer-text-secondary">
-            {' '}
-            of {formatCurrencyCompact(jar.targetBalance, 'en-GB')} · {pct}%
-          </span>
-        </>
+        <span className="text-hyperlayer-text-secondary">
+          of {formatCurrencyCompact(jar.targetBalance, 'en-GB')} · {pct}%
+        </span>
+      }
+      rightValue={
+        <span className="text-base font-semibold text-hyperlayer-grey">
+          {formatCurrencyCompact(jar.balance, 'en-GB')}
+        </span>
       }
       progress={pct}
     />

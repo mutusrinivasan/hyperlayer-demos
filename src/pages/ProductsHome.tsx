@@ -16,7 +16,6 @@ export default function ProductsHome() {
       <section className="mt-8 lg:mt-0">
         <header>
           <h2 className="text-base font-semibold text-hyperlayer-grey">Your products</h2>
-          <p className="text-xs text-hyperlayer-text-secondary">Everything you have with us</p>
         </header>
         <div className="mt-3 space-y-3">
           <AccountTile account={account} />

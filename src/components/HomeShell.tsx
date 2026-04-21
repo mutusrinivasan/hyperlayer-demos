@@ -22,7 +22,7 @@ export function HomeSidebar({ customer }: { customer: Customer }) {
   return (
     <>
       <img src="/hyperlayer-logo.png" alt="Hyperlayer" className="h-8 w-auto" />
-      <div className="mt-32">
+      <div className="mt-16">
         <p className="text-hyperlayer-text-secondary">Good afternoon,</p>
         <h1 className="text-4xl font-semibold text-hyperlayer-grey">
           {customer.firstName} {customer.lastName}

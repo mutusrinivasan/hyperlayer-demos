@@ -12,18 +12,16 @@ export default function AccountTile({ account }: AccountTileProps) {
     <ProductTile
       icon={<Wallet className="h-4 w-4" />}
       accent="grey"
-      title={account.name}
-      rightLabel="Current account"
+      title="Current account"
       subtitle={
-        <>
-          <span className="font-medium text-hyperlayer-grey">
-            {formatCurrency(account.balance, 'en-GB')}
-          </span>
-          <span className="text-hyperlayer-text-secondary">
-            {' '}
-            · {account.sortCode} · •• {account.accountNumberLast4}
-          </span>
-        </>
+        <span className="text-hyperlayer-text-secondary">
+          {account.sortCode} · •• {account.accountNumberLast4}
+        </span>
+      }
+      rightValue={
+        <span className="text-base font-semibold text-hyperlayer-grey">
+          {formatCurrency(account.balance, 'en-GB')}
+        </span>
       }
     />
   );
