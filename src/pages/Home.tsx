@@ -1,4 +1,5 @@
 import AccountCard from '@/components/AccountCard';
+import JarList from '@/components/JarList';
 import PhoneFrame from '@/components/PhoneFrame';
 import { retailUK } from '@/data/scenarios/retail-uk';
 
@@ -30,6 +31,9 @@ export default function Home() {
           </div>
           <div className="mt-8 lg:mt-0">
             <AccountCard account={account} />
+          </div>
+          <div className="mt-6">
+            <JarList jars={retailUK.jars} />
           </div>
         </PhoneFrame>
       </div>

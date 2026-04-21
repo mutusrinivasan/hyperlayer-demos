@@ -7,6 +7,15 @@ export function formatCurrency(money: Money, locale?: string): string {
   }).format(money.amount);
 }
 
+export function formatCurrencyCompact(money: Money, locale?: string): string {
+  return new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency: money.currency,
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(money.amount);
+}
+
 export interface CurrencyParts {
   symbol: string;
   integer: string;
