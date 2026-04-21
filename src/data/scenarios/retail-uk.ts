@@ -1,0 +1,87 @@
+import type { Scenario } from '@/types/scenario';
+
+export const retailUK: Scenario = {
+  id: 'retail-uk',
+  locale: 'UK',
+  customer: {
+    id: 'cust-retail-uk-emma',
+    firstName: 'Emma',
+    lastName: 'Hughes',
+  },
+  account: {
+    id: 'acct-retail-uk-everyday',
+    name: 'Everyday account',
+    sortCode: '04-00-04',
+    accountNumberLast4: '4421',
+    balance: { amount: 4287.5, currency: 'GBP' },
+    currency: 'GBP',
+  },
+  jars: [
+    {
+      id: 'jar-emergency',
+      name: 'Emergency fund',
+      balance: { amount: 1200, currency: 'GBP' },
+      targetBalance: { amount: 3000, currency: 'GBP' },
+      accent: 'blue',
+      icon: 'shield',
+    },
+    {
+      id: 'jar-barcelona',
+      name: 'Barcelona trip',
+      balance: { amount: 450, currency: 'GBP' },
+      targetBalance: { amount: 1200, currency: 'GBP' },
+      accent: 'teal',
+      icon: 'plane',
+    },
+    {
+      id: 'jar-wedding',
+      name: 'Wedding',
+      balance: { amount: 2800, currency: 'GBP' },
+      targetBalance: { amount: 10000, currency: 'GBP' },
+      accent: 'gold',
+      icon: 'heart',
+    },
+  ],
+  transactions: [
+    {
+      id: 'txn-tesco-21apr',
+      merchantName: 'Tesco',
+      category: 'Groceries',
+      date: '2026-04-21T14:30:00Z',
+      amount: { amount: -42.18, currency: 'GBP' },
+      type: 'card',
+    },
+    {
+      id: 'txn-pret-21apr',
+      merchantName: 'Pret a Manger',
+      category: 'Eating out',
+      date: '2026-04-21T12:45:00Z',
+      amount: { amount: -6.45, currency: 'GBP' },
+      type: 'card',
+    },
+    {
+      id: 'txn-uber-20apr',
+      merchantName: 'Uber',
+      category: 'Transport',
+      date: '2026-04-20T18:20:00Z',
+      amount: { amount: -14.9, currency: 'GBP' },
+      type: 'card',
+    },
+    {
+      id: 'txn-salary-21apr',
+      merchantName: 'Acme Ltd — Salary',
+      category: 'Income',
+      date: '2026-04-21T06:00:00Z',
+      amount: { amount: 2840, currency: 'GBP' },
+      type: 'salary',
+    },
+    {
+      id: 'txn-barcelona-topup-20apr',
+      merchantName: 'Barcelona trip top-up',
+      category: 'Jars',
+      date: '2026-04-20T10:15:00Z',
+      amount: { amount: -50, currency: 'GBP' },
+      type: 'jar-topup',
+    },
+  ],
+};

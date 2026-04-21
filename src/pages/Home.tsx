@@ -1,19 +1,23 @@
+import AccountCard from '@/components/AccountCard';
+import { retailUK } from '@/data/scenarios/retail-uk';
+
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center gap-6 bg-hyperlayer-white px-6 text-hyperlayer-grey">
-      <img src="/hyperlayer-logo.png" alt="Hyperlayer" className="h-10 w-auto" />
+    <div className="min-h-screen bg-hyperlayer-white">
+      <div className="mx-auto max-w-2xl px-6 py-10">
+        <img src="/hyperlayer-logo.png" alt="Hyperlayer" className="h-8 w-auto" />
 
-      <h1 className="text-3xl font-semibold text-hyperlayer-grey">Hyperlayer Bank</h1>
+        <div className="mt-10">
+          <p className="text-hyperlayer-text-secondary">Good afternoon,</p>
+          <h1 className="text-3xl font-semibold text-hyperlayer-grey">
+            {retailUK.customer.firstName} {retailUK.customer.lastName}
+          </h1>
+        </div>
 
-      <p className="text-base text-hyperlayer-text-secondary">Palette and theme check</p>
-
-      <div className="flex gap-4">
-        <div className="h-16 w-16 bg-jar-blue" />
-        <div className="h-16 w-16 bg-jar-teal" />
-        <div className="h-16 w-16 bg-jar-gold" />
+        <div className="mt-8">
+          <AccountCard account={retailUK.account} />
+        </div>
       </div>
-
-      <div className="h-12 w-full max-w-md bg-gradient-to-r from-hyperlayer-gradient-from to-hyperlayer-gradient-to" />
     </div>
   );
 }
