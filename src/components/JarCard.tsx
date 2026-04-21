@@ -24,7 +24,7 @@ export default function JarCard({ jar }: JarCardProps) {
   const pct = Math.floor((jar.balance.amount / jar.targetBalance.amount) * 100);
 
   return (
-    <div className="flex h-44 w-40 shrink-0 snap-start flex-col rounded-xl border border-hyperlayer-grey/10 bg-white p-4">
+    <div className="flex h-36 w-36 shrink-0 snap-start flex-col rounded-xl border border-hyperlayer-grey/10 bg-white p-3">
       <div className="flex items-start justify-between">
         <div className={`flex h-8 w-8 items-center justify-center rounded-full ${accent.bg}`}>
           <Icon className={`h-4 w-4 ${accent.text}`} />
@@ -32,7 +32,7 @@ export default function JarCard({ jar }: JarCardProps) {
         <span className="text-xs font-medium text-hyperlayer-text-secondary">{pct}%</span>
       </div>
 
-      <div className="mt-3 flex-1">
+      <div className="mt-2 flex-1">
         <p className="truncate text-sm font-semibold text-hyperlayer-grey">{jar.name}</p>
         <p className="mt-1 text-xs">
           <span className="font-medium text-hyperlayer-grey">
