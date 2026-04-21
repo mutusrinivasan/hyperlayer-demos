@@ -1,18 +1,6 @@
-import { Heart, Plane, Shield, type LucideIcon } from 'lucide-react';
+import { accentMap, iconMap } from '@/lib/accents';
 import { formatCurrencyCompact } from '@/lib/format';
-import type { Jar, JarAccent, JarIcon } from '@/types/scenario';
-
-const accentMap: Record<JarAccent, { bg: string; text: string; fill: string }> = {
-  blue: { bg: 'bg-jar-blue/15', text: 'text-jar-blue', fill: 'bg-jar-blue' },
-  teal: { bg: 'bg-jar-teal/15', text: 'text-jar-teal', fill: 'bg-jar-teal' },
-  gold: { bg: 'bg-jar-gold/15', text: 'text-jar-gold', fill: 'bg-jar-gold' },
-};
-
-const iconMap: Record<JarIcon, LucideIcon> = {
-  shield: Shield,
-  plane: Plane,
-  heart: Heart,
-};
+import type { Jar } from '@/types/scenario';
 
 interface JarCardProps {
   jar: Jar;

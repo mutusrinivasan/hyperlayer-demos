@@ -1,0 +1,47 @@
+import type { ReactNode } from 'react';
+import PhoneFrame from '@/components/PhoneFrame';
+import type { Customer } from '@/types/scenario';
+
+interface HomeShellProps {
+  sidebar: ReactNode;
+  children: ReactNode;
+}
+
+export default function HomeShell({ sidebar, children }: HomeShellProps) {
+  return (
+    <div className="min-h-screen bg-hyperlayer-white">
+      <div className="mx-auto max-w-2xl px-6 py-10 lg:flex lg:max-w-none lg:flex-row lg:items-start lg:justify-center lg:gap-16 lg:px-6 lg:py-16">
+        <aside className="hidden lg:block lg:w-full lg:max-w-sm">{sidebar}</aside>
+        <PhoneFrame>{children}</PhoneFrame>
+      </div>
+    </div>
+  );
+}
+
+export function HomeSidebar({ customer }: { customer: Customer }) {
+  return (
+    <>
+      <img src="/hyperlayer-logo.png" alt="Hyperlayer" className="h-8 w-auto" />
+      <div className="mt-32">
+        <p className="text-hyperlayer-text-secondary">Good afternoon,</p>
+        <h1 className="text-4xl font-semibold text-hyperlayer-grey">
+          {customer.firstName} {customer.lastName}
+        </h1>
+      </div>
+    </>
+  );
+}
+
+export function MobileGreeting({ customer }: { customer: Customer }) {
+  return (
+    <div className="lg:hidden">
+      <img src="/hyperlayer-logo.png" alt="Hyperlayer" className="h-8 w-auto" />
+      <div className="mt-10">
+        <p className="text-hyperlayer-text-secondary">Good afternoon,</p>
+        <h1 className="text-3xl font-semibold text-hyperlayer-grey">
+          {customer.firstName} {customer.lastName}
+        </h1>
+      </div>
+    </div>
+  );
+}
