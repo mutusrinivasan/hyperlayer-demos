@@ -5,10 +5,16 @@
 import AccountCard from '@/components/AccountCard';
 import HomeShell, { HomeSidebar, MobileGreeting } from '@/components/HomeShell';
 import JarList from '@/components/JarList';
+import TransactionList from '@/components/TransactionList';
 import { retailUK } from '@/data/scenarios/retail-uk';
 
+// Pin the demo's "today" to the seeded-data anchor so TODAY/YESTERDAY labels
+// stay correct regardless of the real calendar date. Remove once the seeded
+// transactions switch to relative day-offsets (see TODO in retail-uk.ts).
+const DEMO_TODAY = new Date('2026-04-21T12:00:00Z');
+
 export default function FeedHome() {
-  const { customer, account, jars } = retailUK;
+  const { customer, account, jars, transactions } = retailUK;
 
   return (
     <HomeShell sidebar={<HomeSidebar customer={customer} />}>
@@ -18,6 +24,9 @@ export default function FeedHome() {
       </div>
       <div className="mt-6">
         <JarList jars={jars} />
+      </div>
+      <div className="mt-6">
+        <TransactionList transactions={transactions} relativeTo={DEMO_TODAY} />
       </div>
     </HomeShell>
   );

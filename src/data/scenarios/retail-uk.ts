@@ -42,6 +42,8 @@ export const retailUK: Scenario = {
       icon: 'heart',
     },
   ],
+  // TODO: refactor to day-offsets (daysAgo: 0, 1, 2...) instead of absolute dates,
+  // so "TODAY" / "YESTERDAY" stay correct whenever the demo is viewed.
   transactions: [
     {
       id: 'txn-tesco-21apr',
@@ -78,7 +80,7 @@ export const retailUK: Scenario = {
     {
       id: 'txn-barcelona-topup-20apr',
       merchantName: 'Barcelona trip top-up',
-      category: 'Jars',
+      category: 'Jar top-up',
       date: '2026-04-20T10:15:00Z',
       amount: { amount: -50, currency: 'GBP' },
       type: 'jar-topup',
