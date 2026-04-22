@@ -3,7 +3,7 @@
 
 import { kv } from '@vercel/kv';
 import type { DemoState } from './types';
-import { initialState } from './seed';
+import { initialState } from './seed.js';
 
 const STATE_KEY = 'scenario:demo';
 
