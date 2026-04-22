@@ -24,7 +24,7 @@ export default function SavingsTile({ jar }: SavingsTileProps) {
         title={jar.name}
         subtitle={
           <span className="text-hyperlayer-text-secondary">
-            of {formatCurrencyCompact(jar.targetBalance, 'en-GB')} · {pct}%
+            {formatCurrencyCompact(jar.targetBalance, 'en-GB')} goal · {pct}%
           </span>
         }
         rightValue={
