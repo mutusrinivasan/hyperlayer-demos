@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { kv } from '@vercel/kv';
-import { initialState } from './lib/seed';
+import { initialState } from './lib/seed.js';
 
 export default async function handler(_req: VercelRequest, res: VercelResponse) {
   try {
