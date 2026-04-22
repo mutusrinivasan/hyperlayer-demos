@@ -5,6 +5,7 @@ import type { Transaction } from '@/types/scenario';
 interface TransactionListProps {
   transactions: Transaction[];
   relativeTo?: Date;
+  showSeeAll?: boolean;
 }
 
 function dateKey(iso: string): string {
@@ -32,16 +33,22 @@ function groupByDate(
     .sort((a, b) => b.key.localeCompare(a.key));
 }
 
-export default function TransactionList({ transactions, relativeTo }: TransactionListProps) {
+export default function TransactionList({
+  transactions,
+  relativeTo,
+  showSeeAll = true,
+}: TransactionListProps) {
   const groups = groupByDate(transactions);
 
   return (
     <section>
       <header className="flex items-baseline justify-between">
         <h2 className="text-base font-semibold text-hyperlayer-grey">Recent transactions</h2>
-        <button type="button" className="text-sm font-medium text-hyperlayer-blue">
-          See all
-        </button>
+        {showSeeAll && (
+          <button type="button" className="text-sm font-medium text-hyperlayer-blue">
+            See all
+          </button>
+        )}
       </header>
 
       {groups.map((group) => (

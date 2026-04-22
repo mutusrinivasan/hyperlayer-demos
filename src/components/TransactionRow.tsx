@@ -10,7 +10,7 @@ interface TransactionRowProps {
 export default function TransactionRow({ transaction, relativeTo }: TransactionRowProps) {
   const { accent, Icon } = resolveCategory(transaction.category);
   const { bg, text } = accentMap[accent];
-  const direction: 'in' | 'out' = transaction.type === 'salary' ? 'in' : 'out';
+  const { direction } = transaction;
   const amountColor = direction === 'in' ? 'text-secondary-green' : 'text-red-700';
 
   return (

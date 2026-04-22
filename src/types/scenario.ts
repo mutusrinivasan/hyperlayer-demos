@@ -32,6 +32,8 @@ export interface Jar {
 
 export type TransactionType = 'card' | 'salary' | 'jar-topup' | 'transfer';
 
+export type TransactionDirection = 'in' | 'out';
+
 export interface Transaction {
   id: string;
   merchantName: string;
@@ -39,6 +41,8 @@ export interface Transaction {
   date: string;
   amount: Money;
   type: TransactionType;
+  direction: TransactionDirection;
+  productSlug: string;
 }
 
 export type ScenarioLocale = 'UK' | 'CA' | 'US' | 'AU' | 'EU';

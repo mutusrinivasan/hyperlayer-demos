@@ -19,6 +19,9 @@ export default function FeedHome() {
   return (
     <HomeShell sidebar={<HomeSidebar customer={customer} />}>
       <MobileGreeting customer={customer} />
+      {/* AccountCard is the feed's hero representation of the current account.
+          Intentionally NOT wrapped in <Link> — the user is already "on" this product
+          in the feed context. Do not tap-wrap this later. */}
       <div className="mt-8 lg:mt-0">
         <AccountCard account={account} />
       </div>
