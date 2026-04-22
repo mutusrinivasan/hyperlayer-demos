@@ -18,29 +18,47 @@ export default function HomeShell({ sidebar, children }: HomeShellProps) {
   );
 }
 
-export function HomeSidebar({ customer }: { customer: Customer }) {
+export function HomeSidebar({ customer }: { customer?: Customer }) {
   return (
     <>
       <img src="/hyperlayer-logo.png" alt="Hyperlayer" className="h-8 w-auto" />
       <div className="mt-16">
-        <p className="text-hyperlayer-text-secondary">Good afternoon,</p>
-        <h1 className="text-4xl font-semibold text-hyperlayer-grey">
-          {customer.firstName} {customer.lastName}
-        </h1>
+        {customer ? (
+          <>
+            <p className="text-hyperlayer-text-secondary">Good afternoon,</p>
+            <h1 className="text-4xl font-semibold text-hyperlayer-grey">
+              {customer.firstName} {customer.lastName}
+            </h1>
+          </>
+        ) : (
+          <div aria-hidden className="animate-pulse">
+            <div className="h-4 w-32 rounded bg-hyperlayer-grey/10" />
+            <div className="mt-2 h-8 w-56 rounded bg-hyperlayer-grey/10" />
+          </div>
+        )}
       </div>
     </>
   );
 }
 
-export function MobileGreeting({ customer }: { customer: Customer }) {
+export function MobileGreeting({ customer }: { customer?: Customer }) {
   return (
     <div className="lg:hidden">
       <img src="/hyperlayer-logo.png" alt="Hyperlayer" className="h-8 w-auto" />
       <div className="mt-10">
-        <p className="text-hyperlayer-text-secondary">Good afternoon,</p>
-        <h1 className="text-3xl font-semibold text-hyperlayer-grey">
-          {customer.firstName} {customer.lastName}
-        </h1>
+        {customer ? (
+          <>
+            <p className="text-hyperlayer-text-secondary">Good afternoon,</p>
+            <h1 className="text-3xl font-semibold text-hyperlayer-grey">
+              {customer.firstName} {customer.lastName}
+            </h1>
+          </>
+        ) : (
+          <div aria-hidden className="animate-pulse">
+            <div className="h-4 w-28 rounded bg-hyperlayer-grey/10" />
+            <div className="mt-2 h-7 w-48 rounded bg-hyperlayer-grey/10" />
+          </div>
+        )}
       </div>
     </div>
   );

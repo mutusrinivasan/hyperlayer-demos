@@ -1,3 +1,8 @@
+// NOTE: This is no longer the runtime source of truth.
+// The client fetches scenario data from the MCP server (/api/tools/*)
+// via useScenario(). This file is retained as a reference shape and a
+// potential fallback for offline scenarios.
+
 import type { Scenario } from '@/types/scenario';
 
 export const retailUK: Scenario = {

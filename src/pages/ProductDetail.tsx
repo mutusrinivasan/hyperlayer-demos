@@ -8,26 +8,26 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
+import ErrorState from '@/components/ErrorState';
 import HomeShell, { HomeSidebar, MobileGreeting } from '@/components/HomeShell';
+import AccountCardSkeleton from '@/components/skeletons/AccountCardSkeleton';
+import TransactionListSkeleton from '@/components/skeletons/TransactionListSkeleton';
 import TransactionList from '@/components/TransactionList';
-import { retailUK } from '@/data/scenarios/retail-uk';
+import { useScenario } from '@/hooks/useScenario';
 import { accentMap } from '@/lib/accents';
 import { formatCurrency, formatCurrencyCompact } from '@/lib/format';
-import { resolveProduct, type ResolvedProduct } from '@/lib/products';
-import type { BankAccount, Jar, Transaction } from '@/types/scenario';
+import { resolveProduct } from '@/lib/products';
+import type { BankAccount, Jar, Scenario, Transaction } from '@/types/scenario';
 
 const DEMO_TODAY = new Date('2026-04-21T12:00:00Z');
 
 export default function ProductDetail() {
   const { productSlug } = useParams<{ productSlug: string }>();
-  const { customer, transactions } = retailUK;
-  const resolved: ResolvedProduct = productSlug
-    ? resolveProduct(productSlug, retailUK)
-    : { type: 'not-found' };
+  const { data: scenario, isError, refetch } = useScenario();
 
   return (
-    <HomeShell sidebar={<HomeSidebar customer={customer} />}>
-      <MobileGreeting customer={customer} />
+    <HomeShell sidebar={<HomeSidebar customer={scenario?.customer} />}>
+      <MobileGreeting customer={scenario?.customer} />
       <div className="mt-8 lg:mt-0">
         {/* TODO: smart back-routing — if user arrived from /, back should go there.
             Currently always points to /products regardless of entry point. */}
@@ -39,23 +39,62 @@ export default function ProductDetail() {
           Products
         </Link>
 
-        {resolved.type === 'not-found' && <NotFound />}
-        {resolved.type === 'account' && (
-          <ProductBody
-            hero={<AccountHero account={resolved.data} />}
-            actions={<AccountActions />}
-            transactions={transactions.filter((t) => t.productSlug === productSlug)}
-          />
-        )}
-        {resolved.type === 'jar' && (
-          <ProductBody
-            hero={<JarHero jar={resolved.data} />}
-            actions={<JarActions />}
-            transactions={transactions.filter((t) => t.productSlug === productSlug)}
-          />
+        {isError ? (
+          <ErrorState onRetry={() => refetch()} />
+        ) : !scenario ? (
+          <DetailSkeleton />
+        ) : (
+          <DetailContent scenario={scenario} productSlug={productSlug} />
         )}
       </div>
     </HomeShell>
+  );
+}
+
+function DetailContent({
+  scenario,
+  productSlug,
+}: {
+  scenario: Scenario;
+  productSlug: string | undefined;
+}) {
+  const resolved = productSlug
+    ? resolveProduct(productSlug, scenario)
+    : ({ type: 'not-found' } as const);
+
+  if (resolved.type === 'not-found') {
+    return <NotFound />;
+  }
+
+  const scopedTxs = scenario.transactions.filter((t) => t.productSlug === productSlug);
+
+  if (resolved.type === 'account') {
+    return (
+      <ProductBody
+        hero={<AccountHero account={resolved.data} />}
+        actions={<AccountActions />}
+        transactions={scopedTxs}
+      />
+    );
+  }
+
+  return (
+    <ProductBody
+      hero={<JarHero jar={resolved.data} />}
+      actions={<JarActions />}
+      transactions={scopedTxs}
+    />
+  );
+}
+
+function DetailSkeleton() {
+  return (
+    <>
+      <AccountCardSkeleton />
+      <div className="mt-6 border-t border-hyperlayer-grey/10 pt-6">
+        <TransactionListSkeleton />
+      </div>
+    </>
   );
 }
 
