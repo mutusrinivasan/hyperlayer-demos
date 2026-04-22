@@ -14,6 +14,20 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   const { toolName } = req.query as { toolName: string };
 
+  // Diagnostic: no-KV tool to verify routing + function-load is healthy.
+  if (toolName === 'diag') {
+    return res.status(200).json({
+      ok: true,
+      env: {
+        KV_REST_API_URL: !!process.env.KV_REST_API_URL,
+        KV_REST_API_TOKEN: !!process.env.KV_REST_API_TOKEN,
+        UPSTASH_REDIS_REST_URL: !!process.env.UPSTASH_REDIS_REST_URL,
+        UPSTASH_REDIS_REST_TOKEN: !!process.env.UPSTASH_REDIS_REST_TOKEN,
+        KV_URL: !!process.env.KV_URL,
+      },
+    });
+  }
+
   try {
     switch (toolName) {
       case 'get-customer-profile':
@@ -27,7 +41,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
   } catch (err) {
     console.error(err);
-    return res.status(500).json({ error: 'Internal error', detail: String(err) });
+    return res.status(500).json({
+      error: 'Internal error',
+      detail: err instanceof Error ? err.message : String(err),
+    });
   }
 }
 
