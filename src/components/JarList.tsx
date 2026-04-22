@@ -15,6 +15,8 @@ export default function JarList({ jars }: JarListProps) {
             Goals you&apos;re putting money aside for
           </p>
         </div>
+        {/* TODO: wire to /savings route — a neobank-pattern full savings list.
+            Not /products which is the incumbent-pattern parallel home. */}
         <button
           type="button"
           className="text-sm font-medium text-hyperlayer-blue"

@@ -45,6 +45,7 @@ export default function TransactionList({
       <header className="flex items-baseline justify-between">
         <h2 className="text-base font-semibold text-hyperlayer-grey">Recent transactions</h2>
         {showSeeAll && (
+          // TODO: wire to /activity route — full transaction history view.
           <button type="button" className="text-sm font-medium text-hyperlayer-blue">
             See all
           </button>
